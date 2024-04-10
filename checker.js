@@ -75,7 +75,7 @@ function getPasswordFromUser() {
 
 const outputFile = "./checking_password_log.txt";
 
-// Enter code to read in the 25 most common passwords here.
+// Enter code to read in the 25 most common passwords from the text file here.
 getPasswordFromUser();
 
 
