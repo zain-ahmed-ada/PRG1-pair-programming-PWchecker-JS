@@ -1,6 +1,8 @@
 const fs = require("fs"); // Importing fs to allow us to use it.
 const readline = require('readline-sync');  // Import readline-sync for synchronous input
 
+const outputFile = "./checking_password_log.txt";
+
 
 // No need for a comment as the function name is self-describing.
 function getCurrentDateTimeFormatted() {
@@ -14,6 +16,12 @@ function getCurrentDateTimeFormatted() {
   const seconds = String(currentDate.getSeconds()).padStart(2, '0');
 
   return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+}
+
+function readInFile(filename){
+
+
+  return "nothing at the moment, change this line";
 }
 
 const passwordCriteria = {
@@ -32,7 +40,6 @@ function isStrongPassword(password) {
            passwordCriteria.digit.test(password) &&
            passwordCriteria.specialChar.test(password);
 }
-
 
 function getPasswordStrength(password) {
     const conditionsPassed = [
@@ -73,7 +80,9 @@ function getPasswordFromUser() {
 
 // End of functions
 
-const outputFile = "./checking_password_log.txt";
+
+// Call a function to read in the data from a file.
+const poorPasswords = readInFile(outputFile); 
 
 // Enter code to read in the 25 most common passwords from the text file here.
 getPasswordFromUser();
