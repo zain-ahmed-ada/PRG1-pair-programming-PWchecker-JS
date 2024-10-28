@@ -80,8 +80,13 @@ function getPasswordFromUser() {
 
 	if (strength === "Strong") {
 		console.log("Your password is strong.");
+
 		checkPasswords(password);
 		fs.appendFileSync(plainTextPasswordsFile, `${password}\n`);
+
+		let scrambledPassword = scramblePassword(password);
+		fs.appendFileSync(scrambledPasswordsFile, `${scrambledPassword}\n`);
+
 		return password;
 	} else {
 		console.log("Password does not meet the criteria. Please enter a different password.");
@@ -98,6 +103,15 @@ const checkPasswords = (password) => {
 			break;
 		}
 	}
+};
+
+const scramblePassword = (password) => {
+	console.log(password);
+	let front = password.substring(0, 2);
+	let middle = password.substring(2, 7);
+	let last = password.slice(-2);
+	let scrambledPassword = last + middle + front;
+	return scrambledPassword;
 };
 
 // End of functions
