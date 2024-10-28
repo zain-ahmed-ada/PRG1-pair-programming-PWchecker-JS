@@ -73,7 +73,6 @@ function getPasswordFromUser() {
 		hideEchoBack: true, // Masks the password input for privacy
 	});
 	const currentDateTime = getCurrentDateTimeFormatted();
-	fs.appendFileSync(passwordCheckLogFile, `${currentDateTime}\n`, "utf-8");
 
 	const strength = getPasswordStrength(password);
 	console.log(`Password strength: ${strength}`);
@@ -85,7 +84,7 @@ function getPasswordFromUser() {
 		fs.appendFileSync(plainTextPasswordsFile, `${password}\n`);
 
 		let scrambledPassword = scramblePassword(password);
-		fs.appendFileSync(scrambledPasswordsFile, `${scrambledPassword}\n`);
+		fs.appendFileSync(scrambledPasswordsFile, `${currentDateTime} ${scrambledPassword}\n`, "utf-8");
 
 		return password;
 	} else {
@@ -106,7 +105,6 @@ const checkPasswords = (password) => {
 };
 
 const scramblePassword = (password) => {
-	console.log(password);
 	let front = password.substring(0, 2);
 	let middle = password.substring(2, 7);
 	let last = password.slice(-2);
